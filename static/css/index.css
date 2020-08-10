@@ -1,0 +1,99 @@
+root{
+    --primary:#2a3647ea;
+    --light: #ffffff;
+    --grey:#efefefef;
+
+}
+
+body{
+    overflow: hidden;
+    font-weight: 200;
+    color:var(--primary);
+  
+    }
+
+a:hover{
+    text-decoration: none;
+}
+
+.d-flex{
+    height: 100vh;    
+}
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+.text-centrado{
+    text-align: center;
+    
+}
+
+.dropdown-menu{
+    padding: 0.1rem !important;
+}
+
+.contenido{
+    background-color: rgba(222, 227, 233, 0.959) !important;
+    height: 400px;
+}
+
+#sidebar-container {
+    min-width: 25vh;
+  
+}
+
+#sidebar-container .logo{
+    background-color: #475661 !important;
+    padding: .595rem 4.5rem;
+    
+   
+}
+
+#sidebar-container .menu{
+    width: 15rem;
+       
+}
+
+#main .carousel-inner img{
+    max-height: 30vh;
+    object-fit: fill;
+    filter: grayscale(70%);
+}
+
+#carousel {
+    position: relative;
+}
+
+#carousel .overlay{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,.5);
+}
+
+#usuario{
+    max-height: 60px;
+    max-width: 40px;
+      
+}
+
+.Links{
+    height: 60px;
+    width: 60px;
+    margin-top:50%; 
+    margin-left:25%;
+}
+.badge{
+    margin-top: 1%;
+    margin-left:40%;
+   
+}
+.img-avatar{
+   border-radius: 50%;
+   margin-top: 5%;
+}
+
+.text-center{
+   text-align: center !important;
+}
