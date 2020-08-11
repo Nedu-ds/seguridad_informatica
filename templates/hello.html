@@ -1,3 +1,14 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block title %}
+    {{super()}}
+    Bienvenido 
+{% endblock %}
+
+{% block body%}
+
+
 {%if user_ip%}
     <h1> Hello World 2, tu IP {{user_ip}} </h1>
 {% else %}
@@ -6,8 +17,7 @@
 
 <ul>
     {% for todo in todos%}
-    <li>
-        todo        
-    </li>
+        {{macros.render_todo(todo)}}
     {% endfor %}
 </ul>
+{% endblock %}
