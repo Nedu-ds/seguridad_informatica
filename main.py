@@ -143,12 +143,13 @@ def Ingreso():
     nombre_archivo_xlsx = mes_t +"-"+ year_t_a +".xlsx"
     nombre_archivo = mes_t +"-"+ year_t_a
     ingresos = ingresos_path + nombre_archivo_xlsx
-    roles = pd.read_excel(ingresos)
+    print(ingresos)
+    roles = pd.read_excel('/mnt/d//Accesos/Reportes/Abr-Jun-2019.xlsx')
 
     #Revisión de existencia de archivos
-    req_ldap_ad= os.listdir(r'D:\Accesos\Archivo_LDAP_Correo')
-    req_correos = os.listdir(r'D:\Accesos\Ingreso de Personal')
-    req_registro =  os.listdir(r"D:\Accesos\Reportes Ingreso de Personal")
+    #req_ldap_ad= os.listdir(r'D:\Accesos\Archivo_LDAP_Correo')
+    #req_correos = os.listdir(r'D:\Accesos\Ingreso de Personal')
+    #req_registro =  os.listdir(r"D:\Accesos\Reportes Ingreso de Personal")
 
     #Variable de grafico requisitos logos
     grafico = {'visto':'visto.PNG','x':'x.PNG'}

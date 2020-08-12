@@ -1,0 +1,87 @@
+{% extends 'base.html'%}
+{%block title%}{{title}}{%endblock%}
+{%block content%}
+    <script>
+
+	function cargando(){
+		var barra = document.getElementById('cargando')
+    var texto = document.getElementById('Consultar_text')
+    var texto1 = document.getElementById('Consultar_text1')
+    var tabla = document.getElementById('tabla2')
+		barra.style.display = 'block';
+    texto.style.display ='none';
+    texto1.style.display ='none';
+    tabla.style.display ='none';
+    
+    var x = document.getElementsByTagName("td");
+        for (var i = 0; i < x.length; i++) {
+          if(x[i].innerHTML== "False"){
+              x[i].style.backgroundColor="red";
+        
+          }
+        }  
+	}
+	</script>
+    <link rel="stylesheet" href="../static/css/table.css">
+    <!--Formulario-->
+    <section id="Formulario" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <h2 class="">Administrar Usuarios</h2>
+                </div>
+            </div>
+            <div>
+            <form>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="icon ion-md-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Buscar" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+            </form>
+        
+            <div class="row">
+                <div class="col">  
+                    {% for table in tables %} 
+                    
+                           
+                            {{titles[loop.index]}}
+                            {{table|safe }}
+                        
+                    
+                    {% endfor %}
+                </div>   
+            </div> 
+            <div class="row">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+            </div>
+
+        </div>
+            
+        
+        
+        
+        <script src="../static/js/table.js"></script>  
+    </section>
+      <!--/Formulario-->
+
+    
+    
+   
+    
+
+{%endblock%}
