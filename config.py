@@ -1,0 +1,7 @@
+class Config(object):
+    SECRET_KEY = 'MFRSTWBPG@PYTHN'
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost/accesos'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False

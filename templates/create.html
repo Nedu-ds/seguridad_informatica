@@ -1,0 +1,111 @@
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+{% extends "base.html" %}
+{% block content %}
+    
+    <!--Formulario-->
+    <section id="Formulario" class="pt-5 pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col text-center">
+              <h2 class="">Administrar Usuarios</h2>
+            </div>
+          </div>
+          <div>
+            <form>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="icon ion-md-search"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Buscar" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+            </form>
+          </div>
+          <div class="table-responsive pt-5">   
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">id</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">Perfil</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for user in usuarios %}
+                    <td>
+                    <div class="custom-control custom-control-sm custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="check{{user.id}}">
+                      <label class="custom-control-label" for="check{{user.id}}">
+  
+                      </label>
+                    </div>
+                  </td>
+                  <th scope="row">{{user.id}}</th>
+                  <td>{{user.username}}</td>
+                  <td>{{user.perfil}}</td>
+                  <td>{{user.create_date}}</td>
+                  <td>
+                    <div class="custom-control custom-control-sm custom-checkbox">
+                      <abbr data-toggle="tooltip" data-placement="bottom" title="Añadir"><button data-toggle="modal" data-target="#staticBackdrop"><i class="icon ion-md-add-circle"></i></button></abbr>
+                      <abbr data-toggle="tooltip" data-placement="bottom" title="Eliminar"><button><i class="icon ion-md-trash"></i></button></abbr>
+                      <abbr data-toggle="tooltip" data-placement="bottom" title="Editar"><button><i class="icon ion-md-create"></i></button></abbr>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        
+  
+      </section>
+      <!--/Formulario-->
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">CREAR NUEVO USUARIO</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="contenedor">
+                    
+                    <form id="createForm" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                        {% from "_macro.html" import render_field %}
+                        <div id='username'>
+                                <p>Usuario</p>
+                                {{render_field(form.username)}}                               
+                        </div>
+                        <div class="pb-2"id='contraseña'>
+                                <p>Contraseña</p>
+                                {{render_field(form.password)}} 
+                        </div>  
+                        <div id='perfil' >
+                                <br>{{render_field(form.perfil)}}
+                        </div>
+                        <br><br><button class="submit-btn">Crear</button>            
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" href="{{url_for('logout')}}" >Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Modal -->
+      
+
+</body>
+</html>
+{% endblock %}

@@ -2,13 +2,11 @@ root{
     --primary:#2a3647ea;
     --light: #ffffff;
     --grey:#efefefef;
-
 }
-
 body{
     overflow: hidden;
     font-weight: 200;
-    color:var(--primary);
+
   
     }
 
@@ -19,9 +17,7 @@ a:hover{
 .d-flex{
     height: 100vh;    
 }
-.bg-primary {
-    background-color: var(--primary) !important;
-}
+
 .text-centrado{
     text-align: center;
     
@@ -36,22 +32,6 @@ a:hover{
     height: 400px;
 }
 
-#sidebar-container {
-    min-width: 25vh;
-  
-}
-
-#sidebar-container .logo{
-    background-color: #475661 !important;
-    padding: .595rem 4.5rem;
-    
-   
-}
-
-#sidebar-container .menu{
-    width: 15rem;
-       
-}
 
 #main .carousel-inner img{
     max-height: 30vh;

@@ -8,10 +8,13 @@
 body{
     overflow: hidden;
     font-weight: 200;
-    color:var(--primary);
+   
   
-    }
+}
 
+.menu{
+    background-color: #2a3647ea !important;
+}
 
 a:hover{
     text-decoration: none;
@@ -25,7 +28,7 @@ a:hover{
     height: 100vh;    
 }
 .bg-primary {
-    background-color: var(--primary) !important;
+    background-color: #2a3647ea !important;
 }
 .text-centrado{
     text-align: center;
@@ -34,6 +37,7 @@ a:hover{
 
 .dropdown-menu{
     padding: 0.1rem !important;
+    
 }
 
 .contenido{
@@ -49,8 +53,7 @@ a:hover{
 #sidebar-container .logo{
     background-color: black !important;
     padding: .595rem 4.5rem;
-    
-   
+  
 }
 
 
@@ -76,8 +79,7 @@ a:hover{
 #usuario{
     max-height: 60px;
     max-width: 40px;
-    margin-top: 15%;
-    margin-right: 50%;
+    
 }
 
 .Links{
@@ -92,4 +94,7 @@ a:hover{
 }
 .nav-main-subitem {
     margin-left: -1.5rem !important;
+}
+.nav-main-item {
+    color: #2a3647ea !important;
 }

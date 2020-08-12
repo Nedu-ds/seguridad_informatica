@@ -18,13 +18,12 @@
     <div class="d-flex" >
       <!-- Side Bar --> 
       <div  class="bg-primary" id="sidebar-container" >
-        <div class="logo">
+        <div class="logo ">
           <h4 class="text-light font-weight-bold">SSI</h4>
         </div>
-        <div class="menu">
-          
-            <li class="nav-main-item mt-3">
-              <a href="#" class="navbar-toggler d-block text-light" data-toggle="collapse" data-target="#Menu"><i class="icon ion-md-menu mr-2 lead"></i>Menu</a> 
+        <div class="menu h-100">
+            <li class="nav-main-item">
+              <a href="{{url_for('index')}}" class="navbar-toggler d-block text-light"><i class="icon ion-md-menu mr-2 lead"></i>Menu</a> 
             </li>
             <li class="nav-main-item mt-3">  
                 <a href="#" class="navbar-toggler d-block text-light" data-toggle="collapse" data-target="#Accesos">            
@@ -81,11 +80,12 @@
                   <div class="dropdown-menu dropdown-menu-right">
                     <p class="text-centrado">Opciones</p>
                   <a class="dropdown-item" href="#">Perfil</a>
-                  <a class="dropdown-item" href="#">Configuración</a>
+                  <a class="dropdown-item" href="{{url_for('create')}}">Configuración</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{{url_for('logout')}}">Salir</a>
                   </div>
                 </div>
+
               </li>
               
             </ul>

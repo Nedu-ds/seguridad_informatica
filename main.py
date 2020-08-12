@@ -78,6 +78,7 @@ def login():
 @app.route('/create', methods =['GET','POST'])
 def create():
     create_form = forms.CreateForm(request.form)
+    users=User.query.order_by(User.id).all()
     if request.method == 'POST' and create_form.validate():
         user = User(create_form.username.data,
                     create_form.password.data,
@@ -93,7 +94,14 @@ def create():
             success_message = 'Usuario registrado'
             flash(u'Usuario registrado','success')
 
-    return render_template('create.html', form = create_form)
+    return render_template('create.html', form = create_form, usuarios=users)
+
+@app.route('/borrar', methods =['GET'])
+def borrar():
+    usuarios = User.query.all()
+    print(usuarios)
+    return render_template('create.html', usuarios = usuarios)
+
 
 @app.route('/cookie')
 def cookie():
@@ -431,19 +439,12 @@ def progress():
 		
 	return Response(baja(), mimetype= 'text/event-stream')
 
-
-@app.route('/ajax-login', methods = ['POST'])
-def ajax_login():
-    print (request.form)
-    username = request.form['username']
-    response = {'status':200,"Usuario":username,'id':1}
-    return json.dumps(response)
     
 if __name__ == '__main__':
     csrf.init_app(app)
     db.init_app(app)
     with app.app_context():
         db.create_all()
-    app.run(host='192.168.36.132',port=8000)
+    app.run(host='192.168.1.119',port=8000)
 
 
