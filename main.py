@@ -7,6 +7,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask import url_for
 from flask import redirect
 from datetime import datetime
+import re
 
 from config import DevelopmentConfig
 from models import db, User
@@ -207,13 +208,13 @@ def Ingreso():
         elif request.form['Modificar'] == 'Consultar':
             # Se obtiene estado de ingresos del ultimo mes
             estado_mensual = estado_mensual_ingresos(mes,year_t, dia)
-            return render_template('ingresos.html',form = ingresos_form, mes_actual = periodo_consulta , perfil=perfil, fecha=nombre_archivo, tables=[roles.to_html(classes='data')],
+            return render_template('ingresos.html',form = ingresos_form, mes_actual = periodo_consulta , perfil=perfil, fecha=nombre_archivo, tables= [(roles.to_html(classes='data', table_id = 'mytable'))],
                                                         titles=roles.columns.values, tables_mensual=[estado_mensual.to_html(classes='data')],
                                                         titles_mensual=estado_mensual.columns.values, logoingr=g.figura['x'], logoingr1=g.figura['x'], logoingr2=g.figura['x'],
                                                         quitar_texto="display:none")
 
         
-    return render_template('ingresos.html',form = ingresos_form,perfil=perfil, mes_actual = periodo_consulta , fecha=nombre_archivo, ldap=nombre_archivo+".csv" , tables=[roles.to_html(classes='data')],
+    return render_template('ingresos.html',form = ingresos_form,perfil=perfil, mes_actual = periodo_consulta , fecha=nombre_archivo, ldap=nombre_archivo+".csv" , tables=[roles.to_html(classes='data', border=None, table_id = 'mydatatable')],
                                                         titles=roles.columns.values, logoingr=g.figura['visto'], logoingr1=g.figura['visto'], logoingr2=g.figura['visto'])
 
 

@@ -1,12 +1,27 @@
-table thead .sorting:after,
-table thead .sorting:before,
-table thead .sorting_asc:after,
-table thead .sorting_asc:before,
-table thead .sorting_asc_disabled:after,
-table thead .sorting_asc_disabled:before,
-table thead .sorting_desc:after,
-table thead .sorting_desc:before,
-table thead .sorting_desc_disabled:after,
-table thead .sorting_desc_disabled:before {
-bottom: .5em;
+.data {
+    font-size: 11pt; 
+    font-family: Arial;
+    border-collapse: collapse; 
+    position: relative;    
+    overscroll-behavior: auto;
+    text-align: justify;
+    height: 450px;
+
+}
+.data thead{
+    background-color: #2a3647ea;
+    color: white;
+    position: sticky;
+    top: 0; /* Don't forget this, required for the stickiness */
+    border: 1px !important;
+}
+
+.data td, th {
+    padding: 5px;
+    text-align: justify;
+
+}
+.data tr:hover {
+    background: silver;
+    cursor: pointer;
 }
