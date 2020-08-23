@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {%block title%}{{title}}{%endblock%}
 {%block content%}
+<link rel="stylesheet" href="../static/css/table.css">
 <section class="pt-4 pl-4">
     <div class="conteiner pr-4">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -33,8 +34,8 @@
                                              
                         <button type="submit" class="btn btn-primary mb-2">Scan</button>    
                     </div>
-                    <div class="row pt-5 ">
-                        <div class="col overflow-auto" id="table" style="height: 476px">  
+                    <div class="tabla-scan row pt-5">
+                        <div class="col overflow-auto " id="table" style="height: 350px">  
                             {% for table in tables %}  
                                 {{table|safe}}
                             {% endfor %}

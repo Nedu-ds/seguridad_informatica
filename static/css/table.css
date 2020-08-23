@@ -3,13 +3,14 @@
     font-family: Arial;
     border-collapse: collapse; 
     position: relative;    
-    overscroll-behavior: auto;
+    overflow: hidden;
     text-align: justify;
-    height: 450px;
-
+    margin-left:auto;
+    margin-right:auto;
+    
 }
 .data thead{
-    background-color: #2a3647ea;
+    background-color: #224dc2ea;
     color: white;
     position: sticky;
     top: 0; /* Don't forget this, required for the stickiness */
