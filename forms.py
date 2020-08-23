@@ -1,5 +1,5 @@
 from wtforms import Form
-from wtforms import StringField, TextField, validators, PasswordField, SelectField,BooleanField
+from wtforms import StringField, TextField, validators, PasswordField, SelectField,BooleanField, SelectMultipleField
 from wtforms.validators import DataRequired
 from wtforms.fields.html5 import EmailField
 from models import User
@@ -42,3 +42,7 @@ class BajasForm(Form):
     mes =SelectField('nombre', choices=[("Nulo", ""),("Ene-Mar", "Ene-Mar"), ("Abr-Jun", "Abr-Jun"), ("Jul-Sep", "Jul-Sep"), ("Oct-Dic", "Oct-Dic")])
     year= SelectField('year', choices=[("Nulo", ""),("2019", "2019"),("2020", "2020"),("2021", "2021"),("2022", "2022"),("2023", "2023"),("2024", "2024"),("2025", "2025"),("2026", "2026")])
     checkbox=BooleanField()
+
+class DNSForm(Form):
+    domain = StringField('Dominio', [validators.Required(message = 'El dominio es requerido')])
+    option = SelectField('Option', choices=[("Whois", "Whois"), ("DNSlookup", "DNSlookup"), ("MXlookup", "MXlookup")])

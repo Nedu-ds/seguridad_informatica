@@ -14,6 +14,10 @@ from models import db, User
 from ingreso_bajas import *
 import forms
 
+import socket
+import dns.resolver
+import whois
+
 import json
 import pandas as pd
 #import tkinter  as tk
@@ -114,7 +118,36 @@ def cookie():
 def acceso():
    return render_template('acceso.html')
 
+@app.route('/spam', methods = ['GET', 'POST'])
+def spam():
+    spam_form = forms.DNSForm(request.form)
+    ip_servers = []
+    country_list = []
+    if request.method == 'POST':
+        domain = spam_form.domain.data
+        answer = whois.whois(domain)
+        name_servers = answer['name_servers']
+        org = answer ['org' ]
+        country = answer['country']
+        if (len(name_servers) > 0):
+            for domain in name_servers:
+                ip = socket.getaddrinfo(domain,25)
+                ip = str(ip).strip().split(',')
+                ipf = ip[4]
+                ipf = ipf.replace(" ('","")
+                ipf2 = ipf.replace("\'","")
+                ip_servers.append(ipf2)
+                country_list.append(country)
+            whois_df = pd.DataFrame ({'Name_Servers':name_servers,'IP':ip_servers,'Country':country_list})
+            return render_template('spam.html', form = spam_form, ip= ipf2,  tables=[whois_df.to_html(classes='data')])
+        else:
 
+            return render_template('spam.html', form = spam_form, error="No existe")
+
+        
+             
+     
+    return render_template('spam.html', form = spam_form)
 
 
 @app.route('/Ingreso', methods =['GET','POST'])
