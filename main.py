@@ -15,6 +15,7 @@ from ingreso_bajas import *
 import forms
 
 import socket
+import dns
 import dns.resolver
 import whois
 
@@ -123,48 +124,74 @@ def spam():
     spam_form = forms.DNSForm(request.form)
     ip_servers = []
     country_list = []
+    mxdata = []
     i = 0
     option = "Whois"
     if request.method == 'POST':
         domain = spam_form.domain.data
         option = spam_form.option.data
+
         if option == "DNSlookup":
-            ips = socket.getaddrinfo(domain,25)
-            print(ips)
-            if len(ips) > 0:
-                for ip in ips:
-                    i +=1
-                    ip = str(ip).strip().split(',')
-                    ipf = ip[4]
-                    ipf = ipf.replace(" ('","")
-                    ipf2 = ipf.replace("\'","")
-                    if ip != ips[i-1] and i%3 == 0:
+            try:
+                ips = socket.getaddrinfo(domain,25)
+                if len(ips) > 0:
+                    for ip in ips:
+                        i +=1
+                        ip = str(ip).strip().split(',')
+                        ipf = ip[4]
+                        ipf = ipf.replace(" ('","")
+                        ipf2 = ipf.replace("\'","")
+                        if ip != ips[i-1] and i%3 == 0:
+                            ip_servers.append(ipf2)
+                        whois_df = pd.DataFrame ({'Name_Servers':domain,'IP Addres':ip_servers})
+                        
+                    return render_template('spam.html', form = spam_form, option=option, tables=[whois_df.to_html(classes='data')])
+            except:
+                flash(u'No existe el dominio','error')
+                return render_template('spam.html', form = spam_form, option=option)
+
+        if option == "MXlookup":
+            
+            try:
+                result = dns.resolver.resolve(domain,'MX') 
+                if len(result) > 0:
+                    for mx in result:
+                        mx_domain = str(mx)
+                        mx_domain = mx_domain.split(" ")
+                        mx_domain = mx_domain[1]
+                        mxdata.append(mx_domain)
+                        ip = socket.getaddrinfo(mx_domain,25)
+                        ip = str(ip).strip().split(',')
+                        ipf = ip[4]
+                        ipf = ipf.replace(" ('","")
+                        ipf2 = ipf.replace("\'","")
                         ip_servers.append(ipf2)
-                    whois_df = pd.DataFrame ({'Name_Servers':domain,'IP Addres':ip_servers})
-                    
+                    whois_df = pd.DataFrame ({'Name_Servers':mxdata,'IP Addres':ip_servers})
                 return render_template('spam.html', form = spam_form, option=option, tables=[whois_df.to_html(classes='data')])
+            except:
+                flash(u'No existe el dominio','error')
+                return render_template('spam.html', form = spam_form, option=option)
         
         elif option == "Whois":    
-            answer = whois.whois(domain)
-            name_servers = answer['name_servers']
-            org = answer ['org' ]
-            country = answer['country']
-            if len(name_servers) > 0:
-                for domain in name_servers:
-                    ip = socket.getaddrinfo(domain,25)
-                    ip = str(ip).strip().split(',')
-                    ipf = ip[4]
-                    ipf = ipf.replace(" ('","")
-                    ipf2 = ipf.replace("\'","")
-                    ip_servers.append(ipf2)
-                    country_list.append(country)
-                whois_df = pd.DataFrame ({'Name_Servers':name_servers,'IP Addres':ip_servers,'Country':country_list})
-                return render_template('spam.html', form = spam_form, option=option, tables=[whois_df.to_html(classes='data')])
-            else:
-
-                return render_template('spam.html', form = spam_form, error="No existe", option=option)
-
-        
+            try:
+                answer = whois.whois(domain)
+                name_servers = answer['name_servers']
+                org = answer ['org' ]
+                country = answer['country']
+                if len(name_servers) > 0:
+                    for domain in name_servers:
+                        ip = socket.getaddrinfo(domain,25)
+                        ip = str(ip).strip().split(',')
+                        ipf = ip[4]
+                        ipf = ipf.replace(" ('","")
+                        ipf2 = ipf.replace("\'","")
+                        ip_servers.append(ipf2)
+                        country_list.append(country)
+                    whois_df = pd.DataFrame ({'Name_Servers':name_servers,'IP Addres':ip_servers,'Country':country_list})
+                    return render_template('spam.html', form = spam_form, option=option, tables=[whois_df.to_html(classes='data')])
+            except:
+                flash(u'No existe el dominio','error')
+                return render_template('spam.html', form = spam_form, option=option)        
              
      
     return render_template('spam.html', form = spam_form, option=option)

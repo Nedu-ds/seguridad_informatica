@@ -34,14 +34,27 @@
                                              
                         <button type="submit" class="btn btn-primary mb-2">Scan</button>    
                     </div>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-danger alert-dismissible"> 
+                        <button type="button" data-dismiss="alert" class="close">&times;</button>
+                         {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
                     <div class="tabla-scan row pt-5">
                         <div class="col overflow-auto " id="table" style="height: 350px">  
                             {% for table in tables %}  
                                 {{table|safe}}
                             {% endfor %}
                             
-                        </div>   
+                        </div>  
+                        
                     </div> 
+                    
+                    
                     <div class="row pb-2">
                         <p class="dns font-weight-bold pl-5">{{error}}</p>
                     </div>
