@@ -79,6 +79,8 @@ a:hover{
 #usuario{
     max-height: 60px;
     max-width: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
     
 }
 
@@ -98,3 +100,4 @@ a:hover{
 .nav-main-item {
     color: #2a3647ea !important;
 }
+

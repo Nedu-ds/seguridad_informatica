@@ -169,7 +169,7 @@ def spam():
                     whois_df = pd.DataFrame ({'Name_Servers':mxdata,'IP Addres':ip_servers})
                 return render_template('spam.html', form = spam_form, option=option, tables=[whois_df.to_html(classes='data')])
             except:
-                flash(u'No existe el dominio','error')
+                flash(u'No existe un registro MX para el dominio','error')
                 return render_template('spam.html', form = spam_form, option=option)
         
         elif option == "Whois":    
@@ -190,7 +190,7 @@ def spam():
                     whois_df = pd.DataFrame ({'Name_Servers':name_servers,'IP Addres':ip_servers,'Country':country_list})
                     return render_template('spam.html', form = spam_form, option=option, tables=[whois_df.to_html(classes='data')])
             except:
-                flash(u'No existe el dominio','error')
+                flash(u'No existe informacion del dominnio','error')
                 return render_template('spam.html', form = spam_form, option=option)        
              
      
