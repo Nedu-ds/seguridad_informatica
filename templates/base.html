@@ -23,39 +23,36 @@
           <h4 class="text-light font-weight-bold">SSI</h4>
         </div>
         <div class="menu h-100">
-            <li class="nav-main-item">
-              <a href="{{url_for('index')}}" class="navbar-toggler d-block text-light"><i class="icon ion-md-menu mr-2 lead"></i>Menu</a> 
-            </li>
-            <li class="nav-main-item mt-3">  
-                <a href="#" class="navbar-toggler d-block text-light" data-toggle="collapse" data-target="#Accesos">            
-                <i class="icon ion-md-key  mr-2 lead"></i>Accesos</a>                    
-                <div>
-                  <div class="collapse" id="Accesos">
-                    <div class="bg-dark">
-                      <ul class="nav-main-subitem">
-                        <li class="mt-2">
-                          <a href="{{url_for('Ingreso')}}" class="navbar-toggler d-block text-light subitem"><i class="ion-md-person-add mr-2 lead"></i>Ingresos</a> 
-                        </li>
-                        <li>
-                          <a href="#" class="navbar-toggler d-block text-light subitem"><i class="ion-md-person mr-2 lead"></i>Bajas</a>    
-                        </li>
-                        <li>
-                          <a href="#" class="navbar-toggler d-block text-light subitem"><i class="ion-md-person mr-2 lead"></i>Suspensiones</a>    
-                        </li>
-                      </ul>
-                      
-                      
-                    </div>
-                  </div>
-                  
+          <li class="nav-main-item">
+            <a href="{{url_for('index')}}" class="navbar-toggler d-block text-light"><i class="icon ion-md-menu mr-2 lead"></i>Menu</a> 
+          </li>
+          <li class="nav-main-item mt-3">  
+            <a href="#" class="navbar-toggler d-block text-light" data-toggle="collapse" data-target="#Accesos">            
+            <i class="icon ion-md-key  mr-2 lead"></i>Accesos</a>                    
+            <div>
+              <div class="collapse" id="Accesos">
+                <div class="bg-dark">
+                  <ul class="nav-main-subitem">
+                    <li class="mt-2">
+                      <a href="{{url_for('Ingreso')}}" class="navbar-toggler d-block text-light subitem"><i class="ion-md-person-add mr-2 lead"></i>Ingresos</a> 
+                    </li>
+                    <li>
+                      <a href="#" class="navbar-toggler d-block text-light subitem"><i class="ion-md-person mr-2 lead"></i>Bajas</a>    
+                    </li>
+                    <li>
+                      <a href="#" class="navbar-toggler d-block text-light subitem"><i class="ion-md-person mr-2 lead"></i>Suspensiones</a>    
+                    </li>
+                  </ul>
                 </div>
-            </li>
-            <li class="nav-main-item mt-3">
-              <a href="#" class="navbar-toggler d-block text-light" data-toggle="collapse" data-target="#navbarToggleExternalContent"><i class="icon ion-md-analytics mr-2 lead"></i>Monitoreo</a>
-            </li>
-            <li class="nav-main-item mt-3">
-              <a href="{{url_for('spam')}}" class="navbar-toggler d-block text-light" ><i class="icon ion-md-mail mr-2 lead"></i>Antispam</a>  
-            </li>
+              </div>        
+            </div>
+           </li>
+          <li class="nav-main-item mt-3">
+            <a href="#" class="navbar-toggler d-block text-light" data-toggle="collapse" data-target="#navbarToggleExternalContent"><i class="icon ion-md-analytics mr-2 lead"></i>Monitoreo</a>
+          </li>
+          <li class="nav-main-item mt-3">
+            <a href="{{url_for('spam')}}" class="navbar-toggler d-block text-light" ><i class="icon ion-md-mail mr-2 lead"></i>Antispam</a>  
+          </li>
           
         </div>
       </div>
@@ -67,11 +64,10 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-        
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" >Bienvenido <span class="sr-only">(current)</span></a>
+                <a class="nav-link p-0 pl-5" >Bienvenido</span></a>
               </li>
               <li class="nav-item dropdown">
                 <div class="btn-group">
@@ -86,16 +82,13 @@
                   <a class="dropdown-item" href="{{url_for('logout')}}">Salir</a>
                   </div>
                 </div>
-
-              </li>
-              
-            </ul>
-            
+              </li>           
+            </ul>         
           </div>
         </nav>
         <!-- Main -->
-	{%block content%}
-	{%endblock%} 
+    	  {%block content%}
+	     {%endblock%} 
         <!-- Main -->
       </div>
       <!-- Nav Bar -->

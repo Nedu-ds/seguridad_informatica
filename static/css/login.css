@@ -46,7 +46,7 @@ top: -45px;
 
 .input-group-prepend span{
 width: 50px;
-background-color: #17a2b8;
+background-color: #007bff;
 color: black;
 border:0 !important;
 }
@@ -71,7 +71,7 @@ margin-right: 5px;
 
 .login_btn{
 color: black;
-background-color: #17a2b8;
+background-color: #007bff;
 width: 100px;
 }
 
@@ -88,7 +88,8 @@ color: white;
 margin-left: 4px;
 }
 .btn {
-background-color: #17a2b8;
+color: white;
+background-color: #007bff;
 }
 .error{
 background-color: red;

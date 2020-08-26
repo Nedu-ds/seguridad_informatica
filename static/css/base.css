@@ -34,12 +34,9 @@ a:hover{
     text-align: center;
     
 }
-
 .dropdown-menu{
-    padding: 0.1rem !important;
-    
+    padding: 0.1rem !important;  
 }
-
 .contenido{
     background-color: rgba(222, 227, 233, 0.959) !important;
     height: 400px;
@@ -49,13 +46,11 @@ a:hover{
     min-width: 25vh;
   
 }
-
 #sidebar-container .logo{
     background-color: black !important;
     padding: .595rem 4.5rem;
-  
-}
 
+}
 
 #main .carousel-inner img{
     max-height: 30vh;
@@ -81,13 +76,11 @@ a:hover{
     max-width: 40px;
     margin-top: auto;
     margin-bottom: auto;
-    
 }
-
 .Links{
     height: 60px;
     width: 60px;
-    margin-top: 8%;
+    margin-top: 20%;
     margin-left: 40%;
 }
 .badge{
@@ -99,5 +92,9 @@ a:hover{
 }
 .nav-main-item {
     color: #2a3647ea !important;
+}
+a {
+    margin-top: 8px;
+    
 }
 
