@@ -153,7 +153,9 @@ def spam():
         if option == "MXlookup":
             
             try:
-                result = dns.resolver.resolve(domain,'MX') 
+                my_resolver = dns.resolver.Resolver()
+                my_resolver.nameservers = ['8.8.8.8']
+                result = my_resolver.query(domain,'MX') 
                 if len(result) > 0:
                     for mx in result:
                         mx_domain = str(mx)
