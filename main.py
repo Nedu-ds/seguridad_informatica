@@ -11,7 +11,7 @@ import re
 
 from config import DevelopmentConfig
 from models import db, User
-from ingreso_bajas import *
+#from ingreso_bajas import *
 import forms
 
 import socket
