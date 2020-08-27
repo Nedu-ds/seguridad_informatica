@@ -529,6 +529,6 @@ if __name__ == '__main__':
     db.init_app(app)
     with app.app_context():
         db.create_all()
-    app.run(host='192.168.1.119',port=8000)
+    app.run(host='172.17.226.225',port=8000)
 
 
