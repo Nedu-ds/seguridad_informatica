@@ -11,6 +11,7 @@ import re
 
 from config import DevelopmentConfig
 from models import db, User
+import os,time,random
 #from ingreso_bajas import *
 import forms
 
@@ -38,7 +39,7 @@ def page_nof_found(e):
 
 @app.before_request
 def before_request():
-    if 'username' not in session and request.endpoint in ['acceso','index','Ingreso','baja_de_personal']:
+    if 'username' not in session and request.endpoint in ['acceso','index','spam','create']:
         return redirect (url_for('login'))
     elif 'username' in session and request.endpoint in ['login',]:
         
