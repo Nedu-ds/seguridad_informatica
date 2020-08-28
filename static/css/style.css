@@ -1,0 +1,72 @@
+html,body{
+    background-image: url('../image/nodejseeq.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+}
+
+.card{
+    height: 355px;
+    margin-top:250px;
+    margin-bottom: auto;
+    width: 1150px;
+    background-color: transparent;
+   
+   
+
+}
+span{
+    color: white;
+}
+
+div.registro{
+    padding: 90px 45px 90px 60px;
+    border-left: yellow;
+    
+    
+    height: 349px;
+}
+
+div.formulario{
+    padding-top:76px;
+    
+    
+}
+
+div.form-label{
+    position: absolute;
+    margin-left: 61px;
+    text-align: center;
+    background-color: white;
+    width: 36px;
+    height: 24px;
+}
+div.form-text{
+    width: 515px;
+    margin-left: 50px;
+    margin-top: 12px;
+}
+
+
+.login{
+    margin-left: 50px;
+    margin-top: -15px;
+}
+.btn{
+    background-color: #145388;
+    width: 117px;
+    border-radius: 100px;
+    color: white;
+    margin-left: 444px;
+    margin-top: -20px;
+}
+
+h2{
+    color:white;
+}
+
+label.Forgot{
+    margin-left: 50px;
+    margin-top: 20px;
+}
