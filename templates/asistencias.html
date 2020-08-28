@@ -7,24 +7,86 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+      body, html{
+        background-image: url('./image/balloon.jpg.png'); 
+        background-size:cover;
+        background-repeat: no-repeat;
+        height: 100%;
+      }
+      .card{
+        height: 40%;
+        margin-top:15%;
+        margin-bottom: auto;
+        width: 75%;
+        background-color: transparent; 
+    }
+    span{
+        color: white;
+    }
+    div.registro{
+        padding: 11% 3% 10% 3%;
+        background-image: url('./image/login-balloon.png');     
+        background-size: cover;  
+        
+    }
+    div.formulario{
+        padding-top:5%;  
+        background-color: white;
+    }
+    div.card{
+      background-color: transparent !important;
+    }
+    div.form-label{
+        position: absolute;
+        margin-left: 61px;
+        text-align: center;
+        background-color: white;
+        
+    }
+    div.form-text{
+        width: 80%x;
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 12px;
+    }
+            
+    button.btn{
+        background-color: #145388;
+        border-radius: 10px;
+        color: white;
+        margin-top: 10px;
+        margin-right: 5%;
+    }
+    
+    h2{
+        color:white;
+    }
+    
 
+    label.Forgot{
+        margin-left: 50px;
+        margin-top: 20px;
+    }
+   
+    </style>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/style.css">                
+                   
   </head>
-  <body> 
+  <body>
     <div class="conteiner h-100">
       <div class="d-flex justify-content-center h-100">
-           <div class="card">        
-              <div class="row form">
-                <div class="col-5 registro">
+           <div class="card conteiner">        
+              <div class="row form-conteiner">
+                <div class="col-sm-12 col-md-5 col-lg-5 registro">
                   <h2>EMPRESA ELECTICA QUITO S.A.</h2>
                   <span><small>Por favor ingrese sus credenciales para iniciar sesión. </small></span>
                   <span><small>Si no eres miembro, por favor <a href="#">REGISTRATE.</a></small></span>
                 </div>
-                <div class="col-7 formulario">
+                <div class="col-sm-12 col-md-7 col-lg-7 formulario">
                   <form>
-                      <label class="login">Login</label>
+                      <label class="Forgot">Login</label>
                     <div class="form-label">
                       
                       <label><small>Rol</small></label>                   
@@ -39,9 +101,15 @@
                       <input type="text" class="form-control" id="formGroupExampleInput2">
                     </div>
                     
-                    <div class="form-button">
-                      <label class="Forgot"><small>Forgot Password?</small></label> 
-                      <button type="button" class="btn">LOGIN</button>
+                    <div class="row form-button">
+                      <div class="col-sm-8 col-md-7 col-lg-9">
+                        <label class="Forgot"><small>Forgot Password?</small></label> 
+                      </div>
+                      <div class="col-sm-4 col-md-5 col-lg-3">
+                        <button type="button" class="btn">LOGIN</button>
+                      </div>
+                      
+                      
                     </div>
                   </form>
                 </div>
