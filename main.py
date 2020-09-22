@@ -119,10 +119,6 @@ def cookie():
     response.set_cookie('custome_cookie','Acessos')
     return response
 
-@app.route('/acceso')
-def acceso():
-   return render_template('acceso.html')
-
 @app.route('/spam', methods = ['GET', 'POST'])
 def spam():
     spam_form = forms.DNSForm(request.form)
