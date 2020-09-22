@@ -58,7 +58,7 @@ def index():
     custome_cookie = request.cookies.get('custome_cookie','Undefined')
     return render_template('index.html',usuario=username)
 
-@app.router('/node')
+@app.route('/node')
 def node():
     return render_template('node.html')
 
