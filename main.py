@@ -158,7 +158,7 @@ def spam():
             
             try:
                 my_resolver = dns.resolver.Resolver()
-                my_resolver.nameservers = ['8.8.8.8']
+                my_resolver.nameservers = ['172.17.226.40']
                 result = my_resolver.query(domain,'MX') 
                 if len(result) > 0:
                     for mx in result:
