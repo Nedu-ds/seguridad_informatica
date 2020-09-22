@@ -142,7 +142,7 @@ def spam():
                     for ip in ips:
                         i +=1
                         ip = str(ip).strip().split(',')
-                        ipf = ip[4]S
+                        ipf = ip[4]
                         ipf = ipf.replace(" ('","")
                         ipf2 = ipf.replace("\'","")
                         if ip != ips[i-1] and i%3 == 0:
