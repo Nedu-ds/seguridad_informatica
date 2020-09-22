@@ -142,12 +142,12 @@ def spam():
                     for ip in ips:
                         i +=1
                         ip = str(ip).strip().split(',')
-                        ipf = ip[4]
+                        ipf = ip[4]S
                         ipf = ipf.replace(" ('","")
                         ipf2 = ipf.replace("\'","")
                         if ip != ips[i-1] and i%3 == 0:
                             ip_servers.append(ipf2)
-                        whois_df = pd.DataFrame ({'Name_Servers':domain,'IP Addres':ip_servers})
+                        whois_df = pd.DataFrame ({'Name_Servers':domain,'IP Addres':ip_servers}, index=False)
                         
                     return render_template('spam.html', form = spam_form, option=option, tables=[whois_df.to_html(classes='data')])
             except:
@@ -172,7 +172,7 @@ def spam():
                         ipf = ipf.replace(" ('","")
                         ipf2 = ipf.replace("\'","")
                         ip_servers.append(ipf2)
-                    whois_df = pd.DataFrame ({'Name_Servers':mxdata,'IP Addres':ip_servers})
+                    whois_df = pd.DataFrame ({'Name_Servers':mxdata,'IP Addres':ip_servers},index=False)
                 return render_template('spam.html', form = spam_form, option=option, tables=[whois_df.to_html(classes='data')])
             except:
                 flash(u'No existe un registro MX para el dominio','error')
@@ -193,7 +193,7 @@ def spam():
                         ipf2 = ipf.replace("\'","")
                         ip_servers.append(ipf2)
                         country_list.append(country)
-                    whois_df = pd.DataFrame ({'Name_Servers':name_servers,'IP Addres':ip_servers,'Country':country_list})
+                    whois_df = pd.DataFrame ({'Name_Servers':name_servers,'IP Addres':ip_servers,'Country':country_list},index=False)
                     return render_template('spam.html', form = spam_form, option=option, tables=[whois_df.to_html(classes='data')])
             except:
                 flash(u'No existe informacion del dominnio','error')
