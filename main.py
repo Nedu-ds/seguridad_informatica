@@ -89,6 +89,7 @@ def login():
 def create():
     create_form = forms.CreateForm(request.form)
     users=User.query.order_by(User.id).all()
+    user_id = request.form.getlist('user_ids')
     if request.method == 'POST' and create_form.validate():
         user = User(create_form.username.data,
                     create_form.password.data,
@@ -103,14 +104,19 @@ def create():
             db.session.commit()
             success_message = 'Usuario registrado'
             flash(u'Usuario registrado','success')
+        users=User.query.order_by(User.id).all()
+
+    elif request.method == 'POST':
+        if request.form['Eliminar'] == 'eliminar':
+            for user in user_id:
+                user_id = user.replace('check','')
+                db.session.delete(User.query.get(user_id))
+                db.session.commit()
+        
+        users=User.query.order_by(User.id).all()
 
     return render_template('create.html', form = create_form, usuarios=users)
 
-@app.route('/borrar', methods =['GET'])
-def borrar():
-    usuarios = User.query.all()
-    print(usuarios)
-    return render_template('create.html', usuarios = usuarios)
 
 
 @app.route('/cookie')
@@ -529,6 +535,7 @@ if __name__ == '__main__':
     db.init_app(app)
     with app.app_context():
         db.create_all()
-    app.run(host='172.17.226.225',port=8000)
+    app.run(host='192.168.1.119',port=8000)
+    # app.run(host='172.17.226.225',port=8000)
 
 

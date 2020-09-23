@@ -23,7 +23,8 @@ class CreateForm(Form):
                 ])
     password = PasswordField('Password',[validators.Required(message='Ingrese un Password')])
     perfil =SelectField('Perfil', choices=[("Admin", "Administrador"), ("Config", "Operador"), ("Viewer", "Visualizador")])
-    
+    checkbox=BooleanField('delete_user', default=False)
+
     def validate_username_create(form, field):
         username = field.data
         user = User.query.filter_by(username = username).first()
