@@ -83,3 +83,44 @@
   .tabset {
     max-width: 65em;
   }
+
+  .conteiner{
+      background-color: rgb(241, 247, 248);
+      padding-top: 20px;
+      padding-left: 20px;
+  }
+  .domain p{
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: #007bff;
+
+  }
+  .search{
+    display:flex;
+  }
+  
+  .input-domain{
+    height: 28px;
+    width: 300px;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+
+  .option-button{
+    background-color: #2a3647ea;
+    color: white;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px ;
+    font-size: 1.2rem;
+    border: 0px;
+}
+  .scan-button{
+      background-color: #007bff;
+      color: white;
+      width: 60px;
+      height: 30px;
+      border-radius: 5px ;
+      font-size: 1.2rem;
+      border: 0px;
+  }
