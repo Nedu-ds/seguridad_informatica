@@ -2,69 +2,61 @@
 {%block title%}{{title}}{%endblock%}
 {%block content%}
 <link rel="stylesheet" href="../static/css/table.css">
-<section class="pt-4 pl-4">
-    <div class="conteiner pr-4">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-            <a class="nav-link active font-weight-bold" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">IP SCAN</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link font-weight-bold" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">CHECK MAIL</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link font-weight-bold" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active pt-4" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <form  method="POST">
-                <div class="conteiner p-3 mb-2 bg-light text-black w-100 pl-2 ">
-                    <div class="row pb-2">
-                        <p class="dns font-weight-bold pl-5">LOOKUP TOOL</p>
-                    </div>
-                    <div class= "row pl-4 pr-4">       
-                        <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>               
-                        {% from "_macro.html" import render_field %}
-                        <div class="col-5">
-                            {{render_field(form.domain, class="form-control mb-2 mr-sm-2", placeholder="Domain")}}
-                        </div>
-                        <div class="col-2">
-                            {{render_field(form.option, class="form-control mb-2 mr-sm-2 bg-primary text-white", placeholder="Domain")}}
-                        </div>                                  
-                        <button type="submit" class="btn btn-primary mb-2 pl-4 pr-4">Scan</button>    
-                    </div>
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                    {% for category, message in messages %}
-                      <div class="alert alert-danger alert-dismissible "> 
-                        <button type="button" data-dismiss="alert" class="close">&times;</button>
-                         {{ message }}
-                    </div>
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-                    <div class="tabla-scan row pt-5">
-                        <div class="col overflow-auto " id="table" style="height: 350px">  
-                            {% for table in tables %}  
-                                {{table|safe}}
-                            {% endfor %} 
-                        </div>        
-                    </div>  
-                    <div class="row pb-2">
-                        <p class="dns font-weight-bold pl-5">{{error}}</p>
-                    </div>          
-                </form>
-                </div>    
-            </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class=" row form-group">
-                    <label for="exampleFormControlTextarea1"></label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ip}}{{dominios}}</textarea>             
+<div class="tabset">
+    <!-- Tab 1 -->
+    <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+    <label for="tab1">LOOKUP TOOL</label>
+    <!-- Tab 2 -->
+    <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+    <label for="tab2">EMAIL CHECK</label>
+    <!-- Tab 3 -->
+    <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+    <label for="tab3">Dunkles Bock</label>
+    
+    <div class="tab-panels">
+      <section id="marzen" class="tab-panel">
+        
+        <form  method="POST">
+            <div class="conteiner p-3 mb-2 bg-light text-black w-100 pl-2 ">
+                <div class="row pb-2">
+                    <p class="dns font-weight-bold pl-5">LOOKUP TOOL</p>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-        </div>
-    </div>
-</section>
+                <div class= "row pl-4 pr-4">       
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>               
+                    {% from "_macro.html" import render_field %}
+                    <div class="col-5">
+                        {{render_field(form.domain, class="form-control mb-2 mr-sm-2", placeholder="Domain")}}
+                    </div>
+                    <div class="col-2">
+                        {{render_field(form.option, class="form-control mb-2 mr-sm-2 bg-primary text-white", placeholder="Domain")}}
+                    </div>                                  
+                    <button type="submit" class="btn btn-primary mb-2 pl-4 pr-4">Scan</button>    
+                </div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-danger alert-dismissible "> 
+                    <button type="button" data-dismiss="alert" class="close">&times;</button>
+                     {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <div class="tabla-scan row pt-5">
+                    <div class="col overflow-auto " id="table" style="height: 350px">  
+                        {% for table in tables %}  
+                            {{table|safe}}
+                        {% endfor %} 
+                    </div>        
+                </div>  
+                <div class="row pb-2">
+                    <p class="dns font-weight-bold pl-5">{{error}}</p>
+                </div>          
+            </form>
+            </div>    
+      </section>
+    </div>    
+</div>
+            
 
 {%endblock%}
