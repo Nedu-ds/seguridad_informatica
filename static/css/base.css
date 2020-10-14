@@ -4,12 +4,9 @@
     --grey:#efefefef;
 
 }
-
 body{
     overflow: hidden;
     font-weight: 200;
-   
-  
 }
 
 .menu{
@@ -46,7 +43,7 @@ a:hover{
     min-width: 25vh;
   
 }
-#sidebar-container .logo{
+header .logo{
     background-color: black !important;
     padding: .595rem 4.5rem;
 

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/base.css">
+    
+
+  <title>EEQ_SSI</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="logo ">
+        <h4 class="text-light font-weight-bold">SSI</h4>
+      </div>
+      <div>
+        <H4 class="text-centrado" >Seguridad Informática EEQ</h4>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link p-0 pl-5" >Bienvenido</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{usuario}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <p class="text-centrado">Opciones</p>
+                <a class="dropdown-item" href="#">Perfil</a>
+                <a class="dropdown-item" href="{{url_for('create')}}">Configuración</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{url_for('logout')}}">Salir</a>
+                </div>
+              </div>
+            </li>           
+          </ul>         
+        </div>
+      </nav>
+        
+      </ul>
+    </header>
+    <div class="d-flex" >
+      <!-- Side Bar --> 
+      <div  class="bg-primary" id="sidebar-container" >
+        <div class="logo ">
+          <h4 class="text-light font-weight-bold">SSI</h4>
+        </div>
+        <div class="menu h-100">
+          <li class="nav-main-item">
+            <a href="{{url_for('index')}}" class="navbar-toggler d-block text-light"><i class="icon ion-md-menu mr-2 lead"></i>Menu</a> 
+          </li>
+          <li class="nav-main-item mt-3">  
+            <a href="#" class="navbar-toggler d-block text-light" data-toggle="collapse" data-target="#Accesos">            
+            <i class="icon ion-md-key  mr-2 lead"></i>Accesos</a>                    
+            <div>
+              <div class="collapse" id="Accesos">
+                <div class="bg-dark">
+                  <ul class="nav-main-subitem">
+                    <li class="mt-2">
+                      <a href="{{url_for('Ingreso')}}" class="navbar-toggler d-block text-light subitem"><i class="ion-md-person-add mr-2 lead"></i>Ingresos</a> 
+                    </li>
+                    <li>
+                      <a href="#" class="navbar-toggler d-block text-light subitem"><i class="ion-md-person mr-2 lead"></i>Bajas</a>    
+                    </li>
+                    <li>
+                      <a href="#" class="navbar-toggler d-block text-light subitem"><i class="ion-md-person mr-2 lead"></i>Suspensiones</a>    
+                    </li>
+                  </ul>
+                </div>
+              </div>        
+            </div>
+           </li>
+          <li class="nav-main-item mt-3">
+            <a href="#" class="navbar-toggler d-block text-light" data-toggle="collapse" data-target="#navbarToggleExternalContent"><i class="icon ion-md-analytics mr-2 lead"></i>Monitoreo</a>
+          </li>
+          <li class="nav-main-item mt-3">
+            <a href="{{url_for('spam')}}" class="navbar-toggler d-block text-light" ><i class="icon ion-md-mail mr-2 lead"></i>Antispam</a>  
+          </li>
+          
+        </div>
+      </div>
+      <!-- /Side Bar -->
+      <!-- Nav Bar --> 
+      <div class="w-100">
+        
+        <!-- Main -->
+    	  {%block content%}
+	     {%endblock%} 
+        <!-- Main -->
+      </div>
+      <!-- Nav Bar -->
+    </div>
+    <!-- Header --> 
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS --> 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>	
+    <script src="../static/js/tooltip.js"></script>
+    <script src="../static/js/table.js"></script>
+ </body>
+</html>
