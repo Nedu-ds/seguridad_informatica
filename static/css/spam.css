@@ -106,6 +106,7 @@
     border-radius: 10px;
     margin-right: 10px;
     border: 0px;
+    padding-left: 10px;
   }
 
   .option-button{
@@ -125,5 +126,5 @@
       height: 30px;
       border-radius: 5px ;
       font-size: 1.2rem;
-      border: 0px;
+      
   }
