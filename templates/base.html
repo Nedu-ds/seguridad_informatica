@@ -1,13 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEQ_SSI</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/spam.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rossorigin="anonymous">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+<<<<<<< HEAD
     <link rel="stylesheet" href="../static/css/base.css">
     <title>EEQ_SSI</title>
   </head>
@@ -102,4 +105,174 @@
     <script src="../static/js/tooltip.js"></script>
     <script src="../static/js/table.js"></script>
  </body>
+=======
+    
+</head>
+<body>
+    <header>
+        <div class="header-logo ">
+            <h4 class="text-light font-weight-bold">SSI</h4>
+        </div>
+        <div class="header-user">
+            <H4 class="text-centrado" >Seguridad Inform&aacutetica EEQ</h4>
+            <H4 class="text-centrado" >Bienvenido {{usuario}}</h4>
+        </div>
+    </header>
+    <main>
+        <section class="side-bar">
+            <ul class="side-bar-menu">
+                <li class="li-menu"><a href="{{url_for('index')}}"><i class="icon-menu"></i> Men&uacute;</a></li>                
+                <li class="li-menu"  onclick="myFunction()"><a  href=""><i class="icon-key"></i> Accesos</a>     
+                    <nav id="myDIV">
+                        <ul class="side-bar-menu-access">
+                            <li><a href="#">Ingresos</a></li>
+                            <li><a href="#">Bajas</a></li>
+                            <li><a href="#">Suspensi&oacuten</a></li>           
+                        </ul>
+                    </nav>
+                </li>    
+                <li class="li-menu"><a href=""><i class="icon-stumbleupon2"></i> Monitoreo</a></li>                
+                <li class="li-menu"><a href="{{url_for('spam')}}"><i class="icon-mail"></i> Antispam</a></li>                
+                <li class="li-menu"><a href="{{url_for('create')}}"><i class="icon-users"></i> Usuarios</a></li>                
+                <li class="li-menu"><a href="{{url_for('logout')}}"><i class="icon-exit"></i> Salir</a></li>                
+            </ul>
+        </section>
+        <section class="main-content">
+            {%block content%}
+            <link rel="stylesheet" href="../static/css/table.css">
+            <div class="tabset">
+                <!-- Tab 1 -->
+                <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+                <label for="tab1">LOOKUP TOOL</label>
+                <!-- Tab 2 -->
+                <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+                <label for="tab2">EMAIL CHECK</label>
+                <!-- Tab 3 -->
+                <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+                <label for="tab3">Dunkles Bock</label>
+                
+                <div class="tab-panels">
+                  <section id="marzen" class="tab-panel">
+                    
+                    <form  method="POST">
+                        <div class="conteiner">
+                            <div class="domain">
+                                <p>Domain</p>
+                            </div>
+                            <div class= "search">       
+                                <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>              
+                                <input type="text" class="input-domain">
+
+                                <!-- {% from "_macro.html" import render_field %}
+                                {{render_field(form.domain, class="input-domain", placeholder="Domain")}}
+                                {{render_field(form.option, class="option-button", placeholder="Domain")}} -->
+                                <button type="submit" class="scan-button">Scan</button>    
+                            </div>
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                            {% for category, message in messages %}
+                              <div class="alert alert-danger alert-dismissible "> 
+                                <button type="button" data-dismiss="alert" class="close">&times;</button>
+                                 {{ message }}
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <div class="tabla-scan row pt-5">
+                                <div class="col overflow-auto " id="table" style="height: 350px">  
+                                    {% for table in tables %}  
+                                        {{table|safe}}
+                                    {% endfor %} 
+                                </div>        
+                            </div>  
+                            <div class="row pb-2">
+                                <p class="dns font-weight-bold pl-5">{{error}}</p>
+                            </div>          
+                        </form>
+                        </div>    
+                  </section>
+                </div>
+                
+              </div>
+            <!-- <section class="pt-4 pl-4">
+                <div class="conteiner pr-4">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active font-weight-bold" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">IP SCAN</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link font-weight-bold" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">CHECK MAIL</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link font-weight-bold" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active pt-4" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <form  method="POST">
+                            <div class="conteiner p-3 mb-2 bg-light text-black w-100 pl-2 ">
+                                <div class="row pb-2">
+                                    <p class="dns font-weight-bold pl-5">LOOKUP TOOL</p>
+                                </div>
+                                <div class= "row pl-4 pr-4">       
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>               
+                                    {% from "_macro.html" import render_field %}
+                                    <div class="col-5">
+                                        {{render_field(form.domain, class="form-control mb-2 mr-sm-2", placeholder="Domain")}}
+                                    </div>
+                                    <div class="col-2">
+                                        {{render_field(form.option, class="form-control mb-2 mr-sm-2 bg-primary text-white", placeholder="Domain")}}
+                                    </div>                                  
+                                    <button type="submit" class="btn btn-primary mb-2 pl-4 pr-4">Scan</button>    
+                                </div>
+                                {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                {% for category, message in messages %}
+                                  <div class="alert alert-danger alert-dismissible "> 
+                                    <button type="button" data-dismiss="alert" class="close">&times;</button>
+                                     {{ message }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                                <div class="tabla-scan row pt-5">
+                                    <div class="col overflow-auto " id="table" style="height: 350px">  
+                                        {% for table in tables %}  
+                                            {{table|safe}}
+                                        {% endfor %} 
+                                    </div>        
+                                </div>  
+                                <div class="row pb-2">
+                                    <p class="dns font-weight-bold pl-5">{{error}}</p>
+                                </div>          
+                            </form>
+                            </div>    
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class=" row form-group">
+                                <label for="exampleFormControlTextarea1"></label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ip}}{{dominios}}</textarea>             
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                    </div>
+                </div>
+            </section> -->
+	        {%endblock%} 
+        </section>            
+    </main>
+    <script>
+        function myFunction(){        
+            var element = document.getElementById("myDIV");
+            element.classList.toggle("mystyle");
+        }
+    </script>
+     <!-- jQuery first, then Popper.js, then Bootstrap JS --> 
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>	
+     <script src="../static/js/tooltip.js"></script>
+     <script src="../static/js/table.js"></script>
+</body>
+>>>>>>> 2651331e651bb59a5a4db38fbf1b7fbbc05b38f6
 </html>

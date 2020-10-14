@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-    
     <!--Formulario-->
     <section id="Formulario" class="pt-5 pb-5">
         <div class="container">
@@ -20,12 +19,10 @@
             </form>
           </div>
           <div class="custom-control custom-control-sm custom-checkbox">
-                      <abbr data-toggle="tooltip" data-placement="bottom" title="Añadir"><button data-toggle="modal" data-target="#staticBackdrop"><i class="icon ion-md-add-circle"></i></button></abbr>
-                      <abbr data-toggle="tooltip" data-placement="bottom" title="Eliminar"><button name='eliminar' value="eliminar"><i class="icon ion-md-trash"></i></button></abbr>
-                      <abbr data-toggle="tooltip" data-placement="bottom" title="Editar"><button><i class="icon ion-md-create"></i></button></abbr>
-                      
+            <abbr data-toggle="tooltip" data-placement="bottom" title="Añadir"><button data-toggle="modal" data-target="#staticBackdrop"><i class="icon ion-md-add-circle"></i></button></abbr>
+            <abbr data-toggle="tooltip" data-placement="bottom" title="Eliminar"><button name='eliminar' value="eliminar"><i class="icon ion-md-trash"></i></button></abbr>
+            <abbr data-toggle="tooltip" data-placement="bottom" title="Editar"><button><i class="icon ion-md-create"></i></button></abbr>      
           </div>
-              
           <div class="table-responsive pt-5">   
             <form id="createForm" method="POST">
               <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
@@ -70,10 +67,7 @@
             </form>
           </div>
         </div>
-        
-        
-  
-      </section>
+    </section>
       <!--/Formulario-->
       <!-- Modal -->
       <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -114,8 +108,4 @@
         </div>
       </div>
       <!-- /Modal -->
-      
-
-</body>
-</html>
 {% endblock %}
