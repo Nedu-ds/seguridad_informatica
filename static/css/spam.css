@@ -97,6 +97,7 @@
   }
   .search{
     display:flex;
+    margin-bottom: 20px;
   }
   
   .input-domain{
@@ -107,16 +108,17 @@
   }
 
   .option-button{
-    background-color: #2a3647ea;
+    background-color: #03064b;
     color: white;
-    width: 60px;
+    width: 126px;
     height: 30px;
     border-radius: 5px ;
     font-size: 1.2rem;
     border: 0px;
+    margin-right: 10px;
 }
   .scan-button{
-      background-color: #007bff;
+      background-color: #335bc6;
       color: white;
       width: 60px;
       height: 30px;
