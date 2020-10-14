@@ -1,0 +1,105 @@
+*{
+    box-sizing: border-box;
+}
+
+.mySlides {
+    display: none;
+}
+div.carousel{
+    width: 100%;
+    height: 30vh;  
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.mySlides img {
+    vertical-align: middle;
+    width: 100%;
+    height: 30vh;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+
+/*User Avatar*/
+div.carousel-user{
+  
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    color: white;
+}
+div.carousel-user .carousel-user-img{
+    width: 100%;
+    border-radius: 50px;
+}
+div.tools{
+    width: 100%;
+    height: 30vh;
+    
+    padding: 0 20px;
+}
+
+div.tools .tools-container{
+    background-color: rgb(241, 247, 248);
+    width: 100%;
+    height: 100%;
+    box-shadow: 4px solid rgb(19, 20, 20);
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+div.tools .tools-container > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.tools .tools-container > div a{
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+}
+div.tools .tools-container > div a:hover{
+    background-color: rgba(0, 80, 253, 0.4);
+}
+
+div.tools .tools-container > div img{
+    width: 80px;
+    height: 80px;
+}
