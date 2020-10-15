@@ -107,6 +107,7 @@ main section.side-bar ul.side-bar-menu{
 }
 main section.side-bar ul.side-bar-menu li.li-menu{
     margin-bottom: 30px;
+    cursor:pointer;
 }
 main section.side-bar ul.side-bar-menu li.li-menu:hover{
     border-left: 3px solid black;
