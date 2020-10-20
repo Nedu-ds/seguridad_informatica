@@ -4,5 +4,5 @@ class Config(object):
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost/accesos'
-    # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://seguridad:InfTec.2020@localhost/accesos'
+    #SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://seguridad:InfTec.2020@localhost/users'
     SQLALCHEMY_TRACK_MODIFICATIONS = False

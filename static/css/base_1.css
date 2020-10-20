@@ -1,0 +1,97 @@
+:root{
+    --primary:#2a3647ea;
+    --light: #ffffff;
+    --grey:#efefefef;
+
+}
+body{
+    overflow: hidden;
+    font-weight: 200;
+}
+
+.menu{
+    background-color: #2a3647ea !important;
+}
+
+a:hover{
+    text-decoration: none;
+    
+}
+.subitem{
+    font-size: 1rem;
+}
+
+.d-flex{
+    height: 100vh;    
+}
+.bg-primary {
+    background-color: #2a3647ea !important;
+}
+.text-centrado{
+    text-align: center;
+    
+}
+.dropdown-menu{
+    padding: 0.1rem !important;  
+}
+.contenido{
+    background-color: rgba(222, 227, 233, 0.959) !important;
+    height: 400px;
+}
+
+#sidebar-container {
+    min-width: 25vh;
+  
+}
+header .logo{
+    background-color: black !important;
+    padding: .595rem 4.5rem;
+
+}
+
+#main .carousel-inner img{
+    max-height: 30vh;
+    object-fit: fill;
+    filter: grayscale(70%);
+}
+
+#carousel {
+    position: relative;
+}
+
+#carousel .overlay{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,.5);
+}
+
+#usuario{
+    max-height: 60px;
+    max-width: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.Links{
+    height: 60px;
+    width: 60px;
+    margin-top: 20%;
+    margin-left: 40%;
+}
+.badge{
+    margin-top: 1%;
+    margin-left: 42%;
+}
+.nav-main-subitem {
+    margin-left: -1.5rem !important;
+}
+.nav-main-item {
+    color: #2a3647ea !important;
+}
+a {
+    margin-top: 8px;
+    
+}
+

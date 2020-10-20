@@ -2,63 +2,131 @@
 {%block title%}{{title}}{%endblock%}
 {%block content%}
     <link rel="stylesheet" href="../static/css/table.css">
+    <link rel="stylesheet" href="../static/css/ingresos.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"> 
     <!--Formulario-->
-    <section id="Formulario" class="pt-5 pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col text-center">
-                    <h2 class="">TABLA DE INGRESOS EEQ</h2>
-                </div>
-            </div>
-            <div class="pb-5">
-            <form>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><i class="icon ion-md-search"></i></span>
+    <div class="tabset">
+        <!-- Tab 1 -->
+        <input type="radio" name="tabset" id="tab1" aria-controls="registro" checked>
+        <label for="tab1">REGISTROS</label>
+        <!-- Tab 2 -->
+        <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+        <label for="tab2">GENERAR REVISION</label>
+        <!-- Tab 3 -->
+        <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+        <label for="tab3">RESUMEN</label>
+        
+        <div class="tab-panels">
+          <section id="registro" class="tab-panel">
+            <section id="Formulario" class="pt-5 pb-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h2 class="">REGISTRO DE REVISIONES</h2>
+                        </div>
                     </div>
-                    <input type="text" class="form-control" placeholder="Buscar" aria-label="Username" aria-describedby="basic-addon1">
-                </div>
-            </form>
-        
-            <div class="row pt-5 ">
-                <div class="col overflow-auto" id="table" style="height: 400px">  
-                    {% for table in tables %}  
-                        {{table|safe}}
-                    {% endfor %}
-                    
-                </div>   
-            </div> 
-            <div class="row pt-5">
-                <nav aria-label="table">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                    <div class="pb-5">
+                    <form>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="icon ion-md-search"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Buscar" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </form>
                 
-            </div>
-
-        </div>
-            
+                    <div class="ingress-table">
+                        <div class="col overflow-auto" id="table" style="height: 400px">  
+                            {% for table in lastcheck  %}  
+                                {{table|safe}}
+                            {% endfor %}
+                            
+                        </div>   
+                    </div> 
+                    <div class="row pt-5">
+                        <nav aria-label="table">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        
+                    </div>
         
+                </div>
+                    
+            </section>
+          </section>
+          <section id="revision" class="tab-panel">
+            <section id="Formulario" class="pt-5 pb-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h2 class="">GENERAR NUEVA REVISION</h2>
+                        </div>
+                    </div>
+                    <div class="pb-5">
+                    <form  action="" method="POST" enctype="multipart/form-data">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="icon ion-md-search"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Buscar" aria-label="Username" aria-describedby="basic-addon1">
+                            
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                       <span class="input-group-text"><i class="icon ion-md-person"></i></span>
+                                    </div>
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                                    {% from "_macro.html" import render_field %}
+                                    {{render_field(form.mes, class="form-control" ,placeholder="usuario")}}
+                                    {{render_field(form.year, class="form-control" ,placeholder="usuario")}}
+                                    <!-- <input type="file" name="ldap" value="ldap">ldap
+                                    <input type="file" name="correos"> -->
+                                    <input type="submit" name="Generar" value="Generar">
+                                </div>
+                        </div>
+                    </form>
+                
+                    <div class="ingress-table">
+                        <div class="col overflow-auto" id="table" style="height: 400px">  
+                            {% for table in tables%}  
+                                {{table|safe}}
+                            {% endfor %}
+                            
+                        </div>   
+                    </div> 
+                    <div class="row pt-5">
+                        <nav aria-label="table">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        
+                    </div>
         
-        
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
- 
-        <script>
-            $(document).ready( function () {
-                $('#mydatatable').DataTable();
-            } );
-        </script>
-    </section>
+                </div>
+                    
+            </section>
+          </section>
+        </div>    
+    </div>            
+    
       <!--/Formulario-->
 
     

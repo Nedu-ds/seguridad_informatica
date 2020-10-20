@@ -7,12 +7,15 @@ from flask_wtf.csrf import CSRFProtect
 from flask import url_for
 from flask import redirect
 from datetime import datetime
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import  FileStorage
 import re
+import xtarfile as tarfile
 
 from config import DevelopmentConfig
 from models import db, User
 import os,time,random
-#from ingreso_bajas import *
+from ingreso_bajas import *
 import forms
 
 import socket
@@ -31,6 +34,8 @@ import os
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 csrf = CSRFProtect()
+app.config['UPLOAD_CORREOS'] = '/mnt/d/Accesos/CORREOS/'
+app.config['UPLOAD_LDAP'] = '/mnt/d/Accesos/LDAP/'
 
 
 @app.errorhandler(404)
@@ -205,7 +210,7 @@ def spam():
     return render_template('spam.html', form = spam_form, option=option)
 
 
-@app.route('/Ingreso', methods =['GET','POST'])
+@app.route('/ingreso', methods =['GET','POST'])
 def Ingreso():
     
        
@@ -220,11 +225,12 @@ def Ingreso():
     year_t = str(tiempo.year)
     dia = str(tiempo.day)
     if len(mes)==1:
-       dia_p = "0"+ str(dia)
+        dia_p = "0"+ str(dia)
+    else:
+        dia_p = dia
     periodo_consulta = dia_p+ "-" +  meses[str(int(mes)-1)]   + " AL "+ dia_p +"-" + meses[mes] + " " + year_t  
     periodo = meses[mes] + " " + str(year_t)
-    
-       
+         
     # Se muestra el último reporte trimestral generado
     ingresos_path = ("D:/Accesos/Reportes Ingreso de Personal/")
     year_t_a = str(tiempo.year - 1)
@@ -236,9 +242,12 @@ def Ingreso():
     roles = pd.read_excel('/mnt/d//Accesos/Reportes/Abr-Jun-2019.xlsx')
 
     #Revisión de existencia de archivos
-    #req_ldap_ad= os.listdir(r'D:\Accesos\Archivo_LDAP_Correo')
-    #req_correos = os.listdir(r'D:\Accesos\Ingreso de Personal')
+    req_ldap_ad= os.listdir('/mnt/d//Accesos/LDAP')
+    req_correos = os.listdir('/mnt/d//Accesos/Ingreso_Personal')
+    print(req_ldap_ad)
+    print(req_correos)
     #req_registro =  os.listdir(r"D:\Accesos\Reportes Ingreso de Personal")
+
 
     #Variable de grafico requisitos logos
     grafico = {'visto':'visto.PNG','x':'x.PNG'}
@@ -251,39 +260,35 @@ def Ingreso():
 
     #Validacon botones de accion
     ingresos_form = forms.IngresosForm(request.form)
-    if request.method=='POST':
-        if request.form['Modificar'] == 'Modificar1':
-            path = path_carpeta() 
-            return render_template('ingresos.html',form = ingresos_form, path=path)
-        elif request.form['Modificar'] == 'Modificar.':
-            path1 = archivos_ingresos()
-            return render_template('ingresos.html',form = ingresos_form, path1=path1)
-        elif request.form['Modificar'] == 'Ver Registro':
-            mes = ingresos_form.mes.data
-            year = ingresos_form.year.data
-            nombre_archivo = mes +"-"+ year
-            nombre_archivo_csv = mes +"-"+ year +".csv"
-            nombre_archivo_xlsx = mes +"-"+ year +".xlsx"
-            print (nombre_archivo,nombre_archivo_csv,nombre_archivo_xlsx)
-            if ((nombre_archivo_xlsx in req_registro) == True):
-                ingresos_path = ("D:/Accesos/Reportes Ingreso de Personal/")
-                ingresos = ingresos_path + nombre_archivo_xlsx
-                roles = pd.read_excel(ingresos)
-                return render_template('ingresos.html',form = ingresos_form, mes_actual = periodo_consulta, perfil=perfil, fecha=nombre_archivo,ldap="Archivo_LDAP_Correo/"+nombre_archivo_csv,  tables=[roles.to_html(classes='data')],
-                                                        titles=roles.columns.values, logoingr=g.figura['visto'], logoingr1=g.figura['visto'], logoingr2=g.figura['visto'])
-            else:
-                flash('No existe registro para {}'.format(nombre_archivo))
-                return render_template('ingresos.html',form = ingresos_form, mes_actual = periodo_consulta, perfil=perfil, fecha=nombre_archivo,ldap="Archivo_LDAP_Correo/"+nombre_archivo_csv,  logoingr=g.figura['x'], 
-                logoingr1=g.figura['x'], logoingr2=g.figura['x'])
+    if request.method=='POST': 
+        
+        #Ingreso del Archivo LDAP
+        #f = request.files['ldap']
+        #filename_ldap = secure_filename(f.filename)
+        # Guardamos el archivo en el directorio "Archivos PDF"
+        #f.save(os.path.join(app.config['UPLOAD_LDAP'], filename_ldap))
+        
+        #Ingreso de la Carpeta de Correos
+        #f = request.files['correos']
+        #filename_correos = secure_filename(f.filename)
+        # Guardamos el archivo en el directorio "Archivos PDF"
+        #f.save(os.path.join(app.config['UPLOAD_CORREOS'],filename_correos))
+        #source_dir = '/mnt/d/Accesos/CORREOS/'
+                
+        #with tarfile.open(filename_correos, "w:gz") as tar:
+        #    tar.extractall(path=source_dir)
 
-        elif request.form['Modificar'] == 'Generar':
+        if request.form['Generar'] == 'Generar':
+            print("Entro")
             mes = ingresos_form.mes.data
             year = ingresos_form.year.data
             nombre_archivo = mes +"-"+ year
             nombre_archivo_csv = mes +"-"+ year +".csv"
             print (nombre_archivo,nombre_archivo_csv)
             if ((nombre_archivo in req_correos) == True) and ((nombre_archivo_csv in req_ldap_ad) == True):
+                print("Validado")
                 ingresos_nuevo = ingreso_personal_main(nombre_archivo,nombre_archivo_csv)
+                print(ingresos_nuevo)
                 return render_template('ingresos.html',form = ingresos_form, fecha=nombre_archivo, perfil=perfil, ldap=nombre_archivo_csv,  tables=[ingresos_nuevo.to_html(classes='data')],
                                                         titles=ingresos_nuevo.columns.values, logoingr=g.figura['visto'], logoingr1=g.figura['visto'], logoingr2=g.figura['visto'])
             elif ((nombre_archivo in req_correos) == True):
@@ -302,7 +307,7 @@ def Ingreso():
                                                         quitar_texto="display:none")
 
         
-    return render_template('ingresos.html',form = ingresos_form,perfil=perfil, mes_actual = periodo_consulta , fecha=nombre_archivo, ldap=nombre_archivo+".csv" , tables=[roles.to_html(classes='data', border=None, table_id = 'mydatatable')],
+    return render_template('ingresos.html',form = ingresos_form,perfil=perfil, mes_actual = periodo_consulta , fecha=nombre_archivo, ldap=nombre_archivo+".csv" , lastcheck=[roles.to_html(classes='data', border=None, table_id = 'mydatatable')],
                                                         titles=roles.columns.values, logoingr=g.figura['visto'], logoingr1=g.figura['visto'], logoingr2=g.figura['visto'])
 
 
@@ -502,33 +507,6 @@ def suspension():
                                                         titles=roles.columns.values, logoingr=g.figura['visto'], logoingr1=g.figura['visto'], logoingr2=g.figura['visto'])
 
 
-
-@app.route('/progress')
-def progress():
-	def baja():
-		ad=[]
-		for i in range (11):
-			comando_AD= "powershell -NoProfile Get-ADUser -Filter {(SamAccountName -Like \""
-			rol = ["54237","32440","37032","56160","47777","54237","32440","37032","56160","47777","56160"]
-			comando_Fin ="\")}"
-			comando = comando_AD + str(rol[i]) + comando_Fin
-			comando_f = os.popen(comando).read()
-			prueba = comando_f
-			if int(comando_f.find("True")) >=0:
-				estado = "True"
-				ad.append(estado)
-			else:
-				estado= "False"
-				ad.append(estado)
-			yield "data:" + str(i*10) + "\n\n" 
-			print(ad[i])
-        
-        
-		#Lectura del Estado del usuario en Active Directory
-	   	
-		
-	return Response(baja(), mimetype= 'text/event-stream')
-
     
 if __name__ == '__main__':
     csrf.init_app(app)
@@ -536,6 +514,6 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(host='192.168.1.119',port=8000)
-    # app.run(host='172.17.226.225',port=8000)
+    #app.run(host='172.17.226.225',port=8000)
 
 
