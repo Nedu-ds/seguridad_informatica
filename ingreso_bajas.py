@@ -17,7 +17,8 @@ def lectura_archivos(nombre_archivo_csv):
     #path_archivo = filedialog.askopenfilename()
     nombre_archivo_txt = nombre_archivo_csv.replace(".csv",".txt")
     print(nombre_archivo_csv)
-    path_archivo = "/mnt/d/Accesos/LDAP/"+ nombre_archivo_csv
+    #path_archivo = "/mnt/d/Accesos/LDAP/"+ nombre_archivo_csv
+    path_archivo = "/home/seguridad/ssi/accesos//LDAP/"+ nombre_archivo_csv
     print(path_archivo)
     if ("csv" in path_archivo) or ("txt" in path_archivo) == True:
         archivo = pd.read_csv(path_archivo)
@@ -40,7 +41,8 @@ def lectura_correos_Ingreso(nombre_archivo):
     #root = tk.Tk()
     #root.withdraw()
     #path_archivo = filedialog.askdirectory()
-    path_archivo = '/mnt/d//Accesos/Ingreso_Personal/'+nombre_archivo
+    #path_archivo = '/mnt/d/Accesos/Ingreso_Personal/'+nombre_archivo
+    path_archivo = '/home/seguridad/ssi/accesos/Ingreso_Personal/'+nombre_archivo
     arch_corr = os.listdir(path_archivo)
     path_archivo = path_archivo+"/"
     
@@ -131,9 +133,11 @@ def crear_excel(informacion,nombre,tipo):
     #root.withdraw()
     #path_archivo = filedialog.askdirectory()
     if tipo == "ingreso":
-        path_archivo = '/mnt/d/Accesos/Reportes/'
+        #path_archivo = '/mnt/d/Accesos/Reportes/'
+        path_archivo = '/home/seguridad/ssi/accesos/Reportes/'
     else:
-        path_archivo = '/mnt/d/Accesos/Reportes'
+        #path_archivo = '/mnt/d/Accesos/Reportes'
+        path_archivo = '/home/seguridad/ssi/accesos/Reportes'
     arch_corr = os.listdir(path_archivo)
     nombre_f = nombre + ".xlsx"
     path_f = path_archivo + nombre_f
