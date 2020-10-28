@@ -18,7 +18,7 @@ def lectura_archivos(nombre_archivo_csv):
     nombre_archivo_txt = nombre_archivo_csv.replace(".csv",".txt")
     print(nombre_archivo_csv)
     #path_archivo = "/mnt/d/Accesos/LDAP/"+ nombre_archivo_csv
-    path_archivo = "/home/seguridad/ssi/accesos//LDAP/"+ nombre_archivo_csv
+    path_archivo = "/home/seguridad/ssi/accesos/LDAP/"+ nombre_archivo_csv
     print(path_archivo)
     if ("csv" in path_archivo) or ("txt" in path_archivo) == True:
         archivo = pd.read_csv(path_archivo)

@@ -34,8 +34,10 @@ import os
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 csrf = CSRFProtect()
-app.config['UPLOAD_CORREOS'] = '/mnt/d/Accesos/CORREOS/'
-app.config['UPLOAD_LDAP'] = '/mnt/d/Accesos/LDAP/'
+# app.config['UPLOAD_CORREOS'] = '/mnt/d/Accesos/CORREOS/'
+# app.config['UPLOAD_LDAP'] = '/mnt/d/Accesos/LDAP/'
+app.config['UPLOAD_CORREOS'] = '/home/seguridad/ssi/accesos/CORREOS/'
+app.config['UPLOAD_LDAP'] = '/home/seguridad/ssi/accesos/LDAP/'
 
 
 @app.errorhandler(404)
@@ -239,11 +241,14 @@ def Ingreso():
     nombre_archivo = mes_t +"-"+ year_t_a
     ingresos = ingresos_path + nombre_archivo_xlsx
     print(ingresos)
-    roles = pd.read_excel('/mnt/d//Accesos/Reportes/Abr-Jun-2019.xlsx')
+    #roles = pd.read_excel('/mnt/d//Accesos/Reportes/Abr-Jun-2019.xlsx')
+    roles = pd.read_excel('/home/seguridad/ssi/accesos/Reportes/Abr-Jun-2019.xlsx')
 
     #Revisión de existencia de archivos
-    req_ldap_ad= os.listdir('/mnt/d//Accesos/LDAP')
-    req_correos = os.listdir('/mnt/d//Accesos/Ingreso_Personal')
+    # req_ldap_ad= os.listdir('/mnt/d//Accesos/LDAP')
+    # req_correos = os.listdir('/mnt/d//Accesos/Ingreso_Personal')
+    req_ldap_ad= os.listdir('/home/seguridad/ssi/accesos/LDAP')
+    req_correos = os.listdir('/home/seguridad/ssi/accesos/Ingreso_Personal')
     print(req_ldap_ad)
     print(req_correos)
     #req_registro =  os.listdir(r"D:\Accesos\Reportes Ingreso de Personal")
