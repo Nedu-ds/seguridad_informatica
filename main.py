@@ -10,7 +10,7 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 import re
-import xtarfile as tarfile
+#import xtarfile as tarfile
 
 from config import DevelopmentConfig
 from models import db, User
